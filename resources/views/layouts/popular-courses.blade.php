@@ -14,7 +14,7 @@
 				$courses = App\Course::all();
 			?>
 				@foreach ($courses as $course)
-					@component('layouts/carousel-course-card')
+					@component('components/carousel-course-card')
 						@slot('adherents')
 							355
 						@endslot
@@ -31,6 +31,10 @@
 							{{$course->name}}
 						@endslot
 
+						@slot('id')
+							{{$course->id}}
+						@endslot
+						
 						@slot('icon')
 							{{$course->icon}}
 						@endslot

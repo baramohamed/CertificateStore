@@ -27,7 +27,7 @@
 		<div class="row">
 			<div class="col-lg-8 left-contents">
 				<div class="main-image">
-					<img class="img-fluid" src="img/m-img.jpg" alt="">
+					<img class="img-fluid" src="/img/m-img.jpg" alt="">
 				</div>
 				<div class="jq-tab-wrapper" id="horizontalTab">
 					<div class="jq-tab-menu">
@@ -113,7 +113,7 @@
 									<div class="single-comment justify-content-between d-flex">
 										<div class="user justify-content-between d-flex">
 											<div class="thumb">
-												<img src="img/blog/c1.jpg" alt="">
+												<img src="/img/blog/c1.jpg" alt="">
 											</div>
 											<div class="desc">
 												<h5><a href="#">Emilly Blunt</a></h5>
@@ -132,7 +132,7 @@
 									<div class="single-comment justify-content-between d-flex">
 										<div class="user justify-content-between d-flex">
 											<div class="thumb">
-												<img src="img/blog/c2.jpg" alt="">
+												<img src="/img/blog/c2.jpg" alt="">
 											</div>
 											<div class="desc">
 												<h5><a href="#">Elsie Cunningham</a></h5>
@@ -151,7 +151,7 @@
 									<div class="single-comment justify-content-between d-flex">
 										<div class="user justify-content-between d-flex">
 											<div class="thumb">
-												<img src="img/blog/c4.jpg" alt="">
+												<img src="/img/blog/c4.jpg" alt="">
 											</div>
 											<div class="desc">
 												<h5><a href="#">Maria Luna</a></h5>
@@ -248,7 +248,7 @@
 									<div class="single-comment single-reviews justify-content-between d-flex">
 										<div class="user justify-content-between d-flex">
 											<div class="thumb">
-												<img src="img/blog/c1.jpg" alt="">
+												<img src="/img/blog/c1.jpg" alt="">
 											</div>
 											<div class="desc">
 												<h5><a href="#">Emilly Blunt</a>
@@ -272,7 +272,7 @@
 									<div class="single-comment single-reviews justify-content-between d-flex">
 										<div class="user justify-content-between d-flex">
 											<div class="thumb">
-												<img src="img/blog/c2.jpg" alt="">
+												<img src="/img/blog/c2.jpg" alt="">
 											</div>
 											<div class="desc">
 												<h5><a href="#">Elsie Cunningham</a>
@@ -296,7 +296,7 @@
 									<div class="single-comment single-reviews justify-content-between d-flex">
 										<div class="user justify-content-between d-flex">
 											<div class="thumb">
-												<img src="img/blog/c3.jpg" alt="">
+												<img src="/img/blog/c3.jpg" alt="">
 											</div>
 											<div class="desc">
 												<h5><a href="#">Maria Luna</a>
@@ -320,7 +320,7 @@
 									<div class="single-comment single-reviews justify-content-between d-flex">
 										<div class="user justify-content-between d-flex">
 											<div class="thumb">
-												<img src="img/blog/c4.jpg" alt="">
+												<img src="/img/blog/c4.jpg" alt="">
 											</div>
 											<div class="desc">
 												<h5><a href="#">Maria Luna</a>
@@ -350,13 +350,13 @@
 					<li>
 						<a class="justify-content-between d-flex" href="#">
 							<p>Formation</p>
-							<span class="or">Project Management</span>
+							<span class="or">{{$course->name}}</span>
 						</a>
 					</li>
 					<li>
 						<a class="justify-content-between d-flex" href="#">
 							<p>Tarif</p>
-							<span>$230</span>
+							<span>{{$course->price}} DA</span>
 						</a>
 					</li>
 					<li>
@@ -368,7 +368,7 @@
 					<li>
 						<a class="justify-content-between d-flex" href="#">
 							<p>Durée</p>
-							<span>3 Mois</span>
+							<span>{{$course->duration}} Jours</span>
 						</a>
 					</li>
 				</ul>

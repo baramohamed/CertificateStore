@@ -124,7 +124,7 @@
                     </p>
                 </div>
                 <div class="single-review item">
-                    <img src="img/r1.png" alt="">
+                    <img src="/img/r1.png" alt="">
                     <div class="title justify-content-start d-flex">
                         <a href="#">
                             <h4>Fannie Rowe</h4>

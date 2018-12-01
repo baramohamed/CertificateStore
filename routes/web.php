@@ -31,9 +31,8 @@ Route::get('events', function () {
     return view('events');
 });
 
-Route::get('course-details', function () {
-    return view('course-details');
-});
+
+Route::get('course-details/{course}', 'CoursesController@show');
 
 Route::get('event-details', function () {
     return view('event-details');
