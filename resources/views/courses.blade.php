@@ -33,9 +33,7 @@
 			</div>
 		</div>
 		<div class="row">
-		<?php
-			$courses = App\Course::all();
-		?>
+
 			@foreach ($courses as $course)
 				@component('components/course-card')
 					@slot('adherents')

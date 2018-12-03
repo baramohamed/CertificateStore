@@ -48,7 +48,7 @@
       <div class="container main-menu">
          <div class="row align-items-center justify-content-between d-flex">
             <div id="logo">
-               <a href="home"><img style="width: 100px;" src="/img/logo.png" alt="" title="" /></a>
+               <a href="{{asset('home')}}"><img style="width: 100px;" src="/img/logo.png" alt="" title="" /></a>
             </div>
             <nav id="nav-menu-container">
                <ul class="nav-menu">

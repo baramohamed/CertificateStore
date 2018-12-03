@@ -345,34 +345,132 @@
 					</div>
 				</div>
 			</div>
+
 			<div class="col-lg-4 right-contents">
 				<ul>
+					<li hidden>
+						<a class="justify-content-between d-flex text-dark font-weight-normal">
+							<p>Id</p>
+							<span id="courseId" class="or">{{$course->id}}</span>
+						</a>
+					</li>
 					<li>
-						<a class="justify-content-between d-flex" href="#">
+						<a class="justify-content-between d-flex text-dark font-weight-normal">
 							<p>Formation</p>
 							<span class="or">{{$course->name}}</span>
 						</a>
 					</li>
 					<li>
-						<a class="justify-content-between d-flex" href="#">
+						<a class="justify-content-between d-flex text-dark font-weight-normal">
 							<p>Tarif</p>
-							<span>{{$course->price}} DA</span>
+							<span id="price">{{$course->price}} DA</span>
 						</a>
 					</li>
 					<li>
-						<a class="justify-content-between d-flex" href="#">
+						<a class="justify-content-between d-flex text-dark font-weight-normal">
 							<p>Place Disponibles</p>
 							<span>15</span>
 						</a>
 					</li>
 					<li>
-						<a class="justify-content-between d-flex" href="#">
+						<a class="justify-content-between d-flex text-dark font-weight-normal">
 							<p>Durée</p>
 							<span>{{$course->duration}} Jours</span>
 						</a>
 					</li>
+					<li>
+						<a class="justify-content-center d-flex">
+							<p class="h4 or text-uppercase">S'inscrire</p>
+						</a>
+					</li>
 				</ul>
-				<a href="#" class="primary-btn text-uppercase">S'inscrire</a>
+				<form id="registration-form" class="m-1">
+					<div class="form-group">
+						<label class="text-dark font-weight-normal" for="first-name">Nom :</label>
+						<input type="text" class="form-control" id="first-name" required>
+					</div>
+					<div class="form-group">
+						<label class="text-dark font-weight-normal" for="last-name">Prénom :</label>
+						<input type="text" class="form-control" id="last-name" required>
+					</div>
+					<div class="form-group">
+						<label class="text-dark font-weight-normal" for="e-mail">Adresse mail :</label>
+						<input type="email" class="form-control" id="e-mail" required>
+					</div>
+
+					<div class="form-group">
+						<label class="text-dark font-weight-normal" for="birth-date">Date de naissance :</label>
+						<input type="date" class="form-control" id="birth-date" required>
+					</div>
+
+					<div class="form-group">
+						<label class="text-dark font-weight-normal" for="phone">Téléphone :</label>
+						<input type="phone" class="form-control" id="phone" required>
+					</div>
+					<?php
+					$testCenters = App\TestCenter::all();
+					$paymentMethods = App\PaymentMethod::where('active','>','0')->get();
+					?>
+					<div class="form-group">
+						<label class="text-dark font-weight-normal" for="test-center">Choisir un centre de Test :</label>
+						<select class="form-control custom-select" id="test-center" onchange="getSessions()" required>
+							<option>Choisir ...</option>
+							@foreach($testCenters as $testCenter)
+							<option value="{{$testCenter->id}}">{{$testCenter->name}}</option>
+							@endforeach
+						</select>
+					</div>
+					<script>
+						function getSessions() {
+							$.ajax
+								({
+									type: "GET",
+									url: "{{url('get-session')}}/courseId=" + $('#courseId').text() + "&testCenterId=" + $('#test-center option:selected').val(),
+									success: function (result) {
+										$('#test-session').html(result);
+									}
+								});
+						}
+						function makeReservation() {
+							alert("Making reservation...");
+							$.ajax
+								({
+									type: "GET",
+									url: "{{url('make-reservation')}}",
+									data: {
+										firstName:$('#first-name').val(),
+										lastName:$('#last-name').val(),
+										email:$('#e-mail').val(),
+										birthDate:$('#birth-date').val(),
+										phone:$('#phone').val(),
+										courseId:$('#courseId').text(),
+										totalAmount:$('#price').text().replace(" ","").replace("DA",""),
+										testSessionId:$('#test-session option:selected').val(),
+										paymentMethodId:$('#payment-method option:selected').val(),
+									},
+									success: function (result) {
+										alert(result);
+									}
+								});
+						}
+					</script>
+					<div class="form-group">
+						<label class="text-dark font-weight-normal" for="test-session">Choisir un Créneau :</label>
+						<select class="form-control custom-select" id="test-session" required>
+							<option selected>Choisir ...</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<label class="text-dark font-weight-normal" for="payment-method">Méthode de paiement :</label>
+						<select class="form-control custom-select" id="payment-method" required>
+							<option>Choisir ...</option>
+							@foreach($paymentMethods as $paymentMethod)
+							<option value="{{$paymentMethod->id}}">{{$paymentMethod->name}}</option>
+							@endforeach
+						</select>
+					</div>
+					<a onclick="makeReservation()" class="primary-btn text-uppercase">S'inscrire</a>
+				</form>
 			</div>
 		</div>
 	</div>
@@ -383,7 +481,7 @@
 <!-- Start popular-courses Area -->
 
 @component('layouts/popular-courses')
-    
+
 @endcomponent
 
 <!-- End popular-courses Area -->

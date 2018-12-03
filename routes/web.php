@@ -24,15 +24,19 @@ Route::get('about', function () {
 });
 
 Route::get('courses', function () {
-    return view('courses');
+    return view('courses',['courses' => App\Course::all()]);
 });
 
 Route::get('events', function () {
     return view('events');
 });
 
+Route::get('make-reservation', 'ReservationsController@makeReservation');
+
 
 Route::get('course-details/{course}', 'CoursesController@show');
+
+Route::get('get-session/courseId={courseId}&testCenterId={testCenterId}', 'TestSessionsController@getSessions');
 
 Route::get('event-details', function () {
     return view('event-details');

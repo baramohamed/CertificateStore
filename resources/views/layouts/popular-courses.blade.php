@@ -11,7 +11,7 @@
 		<div class="row">
 			<div class="active-popular-carusel">
 			<?php
-				$courses = App\Course::all();
+				$courses = App\Course::take(10)->get();
 			?>
 				@foreach ($courses as $course)
 					@component('components/carousel-course-card')
